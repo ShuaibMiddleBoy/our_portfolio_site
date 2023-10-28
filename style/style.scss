@@ -26,6 +26,9 @@
     font-size: 62.5%;
   }
   body {
+    background-image: url("../images/sp_main_bg.png");
+    background-position: center;
+    background-size: cover;
     width: 100%;
     display: flex;
     flex-direction: column;
