@@ -1,0 +1,200 @@
+:root {
+    --heading-font: 'Montserrat', sans-serif; /* Font for headings */
+    --content-font: 'Roboto', sans-serif; /* Font for content (paragraphs) */
+  }
+
+  :root {
+    --heading-font: 'Montserrat', sans-serif; /* Font for headings */
+    --content-font: 'Roboto', sans-serif; /* Font for content (paragraphs) */
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--heading-font); /* Apply the heading font to all heading elements */
+  }
+
+  p, a {
+    font-family: var(--content-font); /* Apply the content font to paragraphs */
+  }
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html{
+    font-size: 62.5%;
+  }
+  body {
+    background-image: url("../images/sp_main_bg.png");
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f5f5f5;
+    color: #424242;
+    font-size: 15px;
+    line-height: 1.6rem;
+  }
+
+  header nav.navbar {
+    max-width: 1140px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .logo .site-title {
+    color: #49515D;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 20px;
+    margin: 20px 0;
+  }
+
+ span.mention {
+    color: #2196f3;
+  }
+
+  nav.navbar .navbar-right .menu {
+    display: flex;
+    margin: 20px 0;
+  }
+
+  nav.navbar .navbar-right .menu li {
+    list-style-type: none;
+  }
+
+  nav.navbar .navbar-right .menu li a {
+    text-decoration: none;
+    color: #49515d;
+    display: block;
+    position: relative;
+    padding: 8px 0;
+    margin: 0 20px;
+    text-align: center;
+    font-size: 15px;
+    line-height: 1;
+    font-weight: normal; /* You can specify 'normal' or other valid values */
+    outline: none;
+    opacity: 0.6;
+    position: relative;
+  }
+
+  nav.navbar .navbar-right .menu li a::after {
+    content: '';
+    display: block;
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    margin: 0 auto;
+    background-color: #F44336;
+    width: 0;
+    transition: width 0.3s ease-in-out;
+  }
+
+  nav.navbar .navbar-right .menu li a:hover::after {
+    width: 25px;
+  }
+
+  nav.navbar .navbar-right .menu li a.active {
+    opacity: 1;
+  }
+
+  nav.navbar .navbar-right .menu li a:hover {
+    opacity: 1;
+  }
+  nav.navbar .navbar-right .menu li a.active::after {
+    width: 25px;
+  }
+
+
+  // home section
+  .home-wrapper{
+    position: relative;
+    width: 1140px;
+    background-color: #FFFFFF;
+    margin: auto;
+    border-radius: 15px;
+    box-shadow: 0 15px 25px 0 rgba(0,0,0,.1);
+  }
+
+  .home-header {
+    height: 300px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 50px;
+    align-items: center;
+    background-color: #2196f3;
+    background-image: url('../images/sp_main_bg.png');
+    background-position: center;
+    background-size: cover;
+    border-radius: 15px;
+    border-bottom-left-radius: 0%;
+    border-bottom-right-radius: 0%;
+  }
+
+  .home-header .col > img{
+    width: 280px;
+    box-shadow: 0 3px 8px 0 rgba(0,0,0,.1);
+    border: 3px solid #fff;
+  }
+
+  .home-header .col:nth-child(2){
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .home-header .col:nth-child(2) h1{
+    font-family: var(--heading-font);
+    color: #FFFFFF;
+    font-size: 54px;
+  }
+  .home-header .col:nth-child(2) p{
+    font-family: var(--content-font);
+    color: #FFFFFF;
+    font-size: 18px;
+    margin-top: 10px;
+  }
+
+  .home-header .col:nth-child(2) .social-links {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .home-header .col:nth-child(2) .social-links a{
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    border-radius: 24px;
+    background-color: #fff;
+    color: #9e9e9e;
+    text-align: center;
+  }
+  .home-header .col:nth-child(2) .social-links i{
+    line-height: 36px;
+    font-size: 16px;
+  }
+.home-content{
+  padding: 45px 50px 50px;
+}
+//   footer section
+.copyright {
+    display: block;
+    margin-top: auto;
+}
+
+.copyright p{
+        margin-bottom: 12px;
+        text-align: center;
+        font-size: 12px;
+        color: #9e9e9e;
+}
