@@ -312,6 +312,7 @@ nav.navbar .navbar-right .menu li a.active::after {
   background-color: #fff;
 }
 .custom-page-content .page-header {
+  background-image: url("../images/sp_main_bg.png");
   padding: 53px 50px;
 }
 .custom-page-content .page-header h2 {
