@@ -1,68 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Google fonts  -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap"
-      rel="stylesheet"
-    />
-
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap"
+        rel="stylesheet" />
     <!-- font awesome icons cdn  -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- css  -->
     <link rel="stylesheet" href="./style/style.css" />
     <!-- javascript  -->
     <script src="./script/script.js" defer></script>
     <title>Portfolio - Portfolio</title>
-  </head>
-  <body>
+</head>
 
+<body>
     <!-- header  -->
     <header>
-    <nav class="navbar">
-      <div class="navbar-left">
-        <div class="logo">
-          <h1 class="site-title">Alex <span class="mention">Smith</span></h1>
+        <nav class="navbar">
+            <div class="navbar-left">
+                <div class="logo">
+                    <h1 class="site-title">Alex <span class="mention">Smith</span></h1>
+                </div>
+            </div>
+            <div class="navbar-right">
+                <ul class="menu">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    <li>
+                        <a href="./resume.html">Resume</a>
+                    </li>
+                    <li>
+                        <a href="/services.html">Services</a>
+                    </li>
+                    <li>
+                        <a href="/portfolio.html" class="active">Portfolio</a>
+                    </li>
+                    <li>
+                        <a href="/blog.html">Blog</a>
+                    </li>
+                    <li>
+                        <a href="/contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- portfolio  -->
+    <section data-id="portfolio" data-title="Portfolio" class="pt-page pt-page-portfolio">
+        <div class="section-inner custom-page-content">
+        <div class="page-header">
+        <h2 class="section-title">Portfolio</h2>
         </div>
-      </div>
-      <div class="navbar-right">
-        <ul class="menu">
-          <li>
-            <a href="/">Home</a>
-          </li>
-          <li>
-            <a href="./resume.html">Resume</a>
-          </li>
-          <li>
-            <a href="/services.html">Services</a>
-          </li>
-          <li>
-            <a href="/portfolio.html" class="active">Portfolio</a>
-          </li>
-          <li>
-            <a href="/blog.html">Blog</a>
-          </li>
-          <li>
-            <a href="/contact.html">Contact</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-</header>
+        <div class="page-content">
+            <div id="portfolio_content_809568aece72313cf08164d97724d143"
+                class="portfolio-content" data-categories="4,3,5">
+                <ul class="portfolio-filters">
+                    <li class="active"> <a class="filter btn btn-sm btn-link"
+                            data-group="category_all">All</a></li>
+                    <li> <a class="filter btn btn-sm btn-link"
+                            data-group="category_illustration">Illustration</a></li>
+                    <li> <a class="filter btn btn-sm btn-link"
+                            data-group="category_media">Media</a></li>
+                    <li> <a class="filter btn btn-sm btn-link"
+                            data-group="category_video">Video</a></li>
+                </ul>
+                <div class="portfolio-data">
+                <div class="portfolio-grid three-columns" data-pages-num="2">
+                    <figure class="item standard" data-groups='["category_all", &quot;category_media&quot;]'> 
+                        <img width="1280" height="230"
+                            src="./images/1.jpg"
+                            class="attachment-portfolio-image-three-c size-portfolio-image-three-c wp-post-image"
+                            alt="Portfolio Project 4" decoding="async" title="" />
+                            <a href="https://lmpixels.com/wp/aveo/project/portfolio-project-4/" class="ajax-page-load"></a>
+                        <div class="portfolio-preview-desc">
+                            <div class="portfolio-preview-desc-inner">
+                                <h5 class="name">Portfolio Project 4</h5>
+                                <small>Media</small> <i class="fa fa-file-text-o"></i>
+                            </div>
+                        </div>
+                    </figure>
+                    <figure class="item lbimage" data-groups='["category_all", &quot;category_illustration&quot;]'>
+                        <img width="1280" height="230"
+                            src="./images/2.jpg"
+                            class="attachment-portfolio-image-three-c size-portfolio-image-three-c wp-post-image"
+                            alt="Illustration Project 3" decoding="async" title="" />
+                            <a class="lightbox" data-lightbox-gallery="fancybox-item-76"
+                            title="Illustration Project 3"
+                            href="https://lmpixels.com/wp/aveo/wp-content/uploads/2017/10/2.jpg"></a>
+                        <div class="portfolio-preview-desc">
+                            <div class="portfolio-preview-desc-inner">
+                                <h5 class="name">Illustration Project 3</h5>
+                                <small>Illustration</small> <i class="fa fa-image"></i>
+                            </div>
+                        </div>
+                    </figure>
+                    <figure class="item standard" data-groups='["category_all", &quot;category_media&quot;]'>
+                        <img width="1280" height="230"
+                            src="./images/3.jpg"
+                            class="attachment-portfolio-image-three-c size-portfolio-image-three-c wp-post-image"
+                            alt="Portfolio Project 3" decoding="async" title="" />
+                            <a href="https://lmpixels.com/wp/aveo/project/portfolio-project-3/"
+                            class="ajax-page-load"></a>
+                        <div class="portfolio-preview-desc">
+                            <div class="portfolio-preview-desc-inner">
+                                <h5 class="name">Portfolio Project 3</h5>
+                                <small>Media</small> <i class="fa fa-file-text-o"></i>
+                            </div>
+                        </div>
+                    </figure>
+                    <figure class="item lbvideo" data-groups='["category_all", &quot;category_video&quot;]'>
+                        <img width="1280" height="230" src="./images/4.jpg"
+                            class="attachment-portfolio-image-three-c size-portfolio-image-three-c wp-post-image"
+                            alt="Video Project 2" decoding="async" title="" />
+                            <a href="https://player.vimeo.com/video/97102654" class="lightbox mfp-iframe" title="Video Project 2"></a>
+                        <div class="portfolio-preview-desc">
+                            <div class="portfolio-preview-desc-inner">
+                                <h5 class="name">Video Project 2</h5> <small>Video</small>
+                                <i class="fa fa-video-camera"></i>
+                            </div>
+                        </div>
+                    </figure>
+                    <figure class="item standard" data-groups='["category_all", &quot;category_media&quot;]'>
+                        <img width="1280" height="230" src="./images/5.jpg"
+                            class="attachment-portfolio-image-three-c size-portfolio-image-three-c wp-post-image"
+                            alt="Portfolio Project 2" decoding="async" title="" />
+                            <a href="https://lmpixels.com/wp/aveo/project/portfolio-project-2/"
+                            class="ajax-page-load"></a>
+                        <div class="portfolio-preview-desc">
+                            <div class="portfolio-preview-desc-inner">
+                                <h5 class="name">Portfolio Project 2</h5>
+                                <small>Media</small> <i class="fa fa-file-text-o"></i>
+                            </div>
+                        </div>
+                    </figure>
+                    <figure class="item lbimage" data-groups='["category_all", &quot;category_illustration&quot;]'>
+                        <img width="1280" height="230" src="./images/6.jpg"
+                            class="attachment-portfolio-image-three-c size-portfolio-image-three-c wp-post-image"
+                            alt="Illustration Project 2" decoding="async" title="" />
+                            <a class="lightbox" data-lightbox-gallery="fancybox-item-72" title="Illustration Project 2"
+                            href="https://lmpixels.com/wp/aveo/wp-content/uploads/2017/10/6.jpg"></a>
+                        <div class="portfolio-preview-desc">
+                            <div class="portfolio-preview-desc-inner">
+                                <h5 class="name">Illustration Project 2</h5>
+                                <small>Illustration</small> <i class="fa fa-image"></i>
+                            </div>
+                        </div>
+                    </figure>
+                </div>
+                <div class="center"> 
+                    <a class="btn btn-secondary pf-load-more" href="#"
+                        data-load-text="Loading..." data-more-text="Load More">Load More</a>
+                </div>
+            </div>
+            </div>
+    </section>
+    </div>
 
-
-<!-- portfolio  -->
-
-
-
-<!-- footer  -->
-<footer class="copyright">
+    <!-- footer  -->
+    <footer class="copyright">
         <p>© 2023 All rights reserved. Made By <span class="mention">Shuaib & Farooq</span></p>
-</footer>
-  </body>
+    </footer>
+</body>
+
 </html>
