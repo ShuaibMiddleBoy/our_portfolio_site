@@ -1,6 +1,7 @@
 :root {
   --heading-font: "Montserrat", sans-serif; /* Font for headings */
   --content-font: "Roboto", sans-serif; /* Font for content (paragraphs) */
+  --primary-color: #2196f3; /* main color */
 }
 
 h1,
@@ -60,7 +61,7 @@ header nav.navbar {
 }
 
 span.mention {
-  color: #2196f3;
+  color: var(--primary-color);
 }
 
 nav.navbar .navbar-right .menu {
@@ -97,7 +98,7 @@ nav.navbar .navbar-right .menu li a::after {
   bottom: 0;
   height: 2px;
   margin: 0 auto;
-  background-color: #2196f3;
+  background-color: var(--primary-color);
   width: 0;
   transition: width 0.3s ease-in-out;
 }
@@ -134,7 +135,7 @@ nav.navbar .navbar-right .menu li a.active::after {
   grid-template-columns: 1fr 1fr;
   padding: 50px;
   align-items: center;
-  background-color: #2196f3;
+  background-color: var(--primary-color);
   background-image: url("../images/sp_main_bg.png");
   background-position: center;
   background-size: cover;
@@ -281,7 +282,7 @@ nav.navbar .navbar-right .menu li a.active::after {
   text-align: center;
   padding: 30px 50px;
   margin: 0;
-  background-color: #2196f3;
+  background-color: var(--primary-color);
   background-size: cover;
   -webkit-background-size: cover;
   background-attachment: scroll;
@@ -294,7 +295,7 @@ nav.navbar .navbar-right .menu li a.active::after {
   text-align: center;
   padding: 30px 50px;
   margin: 0;
-  background-color: #2196f3;
+  background-color: var(--primary-color);
   background-size: cover;
   -webkit-background-size: cover;
   background-attachment: scroll;
@@ -322,7 +323,7 @@ nav.navbar .navbar-right .menu li a.active::after {
 .page-header h2 {
   color: #ffffff;
   font-size: 44px;
-  font-family: Montserrat, Helvetica, sans-serif;
+  font-family: var(--heading-font);
   font-weight: 700;
   font-style: normal;
   letter-spacing: 0px;
@@ -386,13 +387,13 @@ nav.navbar .navbar-right .menu li a.active::after {
 .block-title h3 {
   font-size: 21px;
   margin: 5px 0 25px;
-  font-family: Montserrat, Helvetica, sans-serif;
+  font-family: var(--heading-font);
   font-weight: 700;
   font-style: normal;
   color: #212121;
 }
 .block-title h3 span {
-  color: #2196f3;
+  color: var(--primary-color);
 }
 
 .col-2 {
@@ -412,7 +413,7 @@ nav.navbar .navbar-right .menu li a.active::after {
   margin-left: 20px;
   margin-bottom: 20px;
   background-color: #fff;
-  border-left: 2px solid #2196f3;
+  border-left: 2px solid var(--primary-color);
   box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
 }
 .timeline-item:hover {
@@ -431,14 +432,14 @@ nav.navbar .navbar-right .menu li a.active::after {
   height: 12px;
   top: 20px;
   left: -29px;
-  border: 2px solid #2196f3;
+  border: 2px solid var(--primary-color);
   z-index: 2;
 }
 .timeline-item:after {
   content: "";
   display: inline-block;
   position: absolute;
-  background-color: #2196f3;
+  background-color: var(--primary-color);
   border-radius: 10px;
   width: 29px;
   height: 2px;
@@ -451,7 +452,7 @@ nav.navbar .navbar-right .menu li a.active::after {
   margin: 0;
   font-size: 16px;
   line-height: 1.2em;
-  font-family: Montserrat, Helvetica, sans-serif;
+  font-family: var(--heading-font);
   font-weight: 700;
   font-style: normal;
 }
@@ -459,7 +460,7 @@ nav.navbar .navbar-right .menu li a.active::after {
   display: inline-block;
   font-size: 12px;
   line-height: 1.2em;
-  color: #2196f3;
+  color: var(--primary-color);
   margin-bottom: 8px;
 }
 .timeline-item .item-small {
@@ -482,7 +483,7 @@ nav.navbar .navbar-right .menu li a.active::after {
 }
 
 p {
-  font-family: Roboto, Helvetica, sans-serif;
+  font-family: var(--content-font);
   font-weight: 0;
   font-style: normal;
   color: #424242;
@@ -511,7 +512,7 @@ p {
 }
 
 .skill-percentage {
-  background-color: #2196f3;
+  background-color: var(--primary-color);
   height: 10px;
   padding: 0;
 }
@@ -634,7 +635,7 @@ a {
 
 .services-header {
   height: 150px;
-  background-color: #2196f3;
+  background-color: var(--primary-color);
   background-image: url("../images/sp_main_bg.png");
   background-position: center;
   background-size: cover;
@@ -754,7 +755,7 @@ a {
 
 .testimonails .row .col .testimonail-credits p {
   font-style: italic;
-  color: #2196f3;
+  color: var(--primary-color);
   font-size: 12px;
 }
 
@@ -762,7 +763,7 @@ a {
   padding: 2.2em 1.2em 1.5em;
   background-color: #fff;
   border: 1px solid #e0e0e0;
-  border-top: 2px solid #2196f3;
+  border-top: 2px solid var(--primary-color);
   margin: 0;
 }
 
@@ -787,7 +788,7 @@ a {
   cursor: pointer;
   border: 0;
   border-radius: 3px;
-  background-color: #2196f3;
+  background-color: var(--primary-color);
 }
 
 .pricing .row .col {
@@ -826,7 +827,7 @@ a {
 
 .contact-header {
   height: 150px;
-  background-color: #2196f3;
+  background-color: var(--primary-color);
   background-image: url("../images/sp_main_bg.png");
   background-position: center;
   background-size: cover;
@@ -883,7 +884,7 @@ a {
   text-align: center;
   font-size: 16px;
   line-height: 36px;
-  color: #2196f3;
+  color: var(--primary-color);
 }
 
 .contact-content .input-container {
@@ -904,7 +905,7 @@ a {
   text-align: center;
   line-height: 32px;
   height: 100%;
-  color: #2196f3;
+  color: var(--primary-color);
   background-color: #fafafa;
   border-bottom: 1px solid #e0e0e0;
 }
@@ -944,7 +945,7 @@ a {
   padding: 0 1.5em;
   outline: none;
   border: 0;
-  background-color: #2196f3;
+  background-color: var(--primary-color);
   color: #ffffff;
   border-radius: 3px;
 }/*# sourceMappingURL=style.css.map */
@@ -975,7 +976,7 @@ a {
 
 .portfolio-filters li.active a,
 .portfolio-filters li.active a:hover {
-  background-color: #2196f3;
+  background-color: var(--primary-color);
   color: #fff
 }
 
@@ -1135,7 +1136,7 @@ fieldset[disabled] .btn-link {
   padding: 5px 20px;
   height: 100%;
   z-index: 2;
-  /* background-color: #2196f3; */
+  /* background-color: var(--primary-color); */
   background-color: rgba(33, 150, 243, 0.5);
 }
 
@@ -1172,7 +1173,5 @@ fieldset[disabled] .btn-link {
 
 .portfolio-data{
     display: flex;
-    /* justify-content: center; 
-    align-items: center; */
     flex-direction: column;
   }
