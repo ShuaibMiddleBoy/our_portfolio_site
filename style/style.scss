@@ -16,7 +16,8 @@ h6 {
 
 p,
 a,
-button {
+button,
+span {
   font-family: var(--content-font); /* Apply the content font to paragraphs */
 }
 
@@ -1199,7 +1200,141 @@ fieldset[disabled] .btn-link {
 
 .portfolio-data{
     display: flex;
-    /* justify-content: center; 
+    /* justify-content: center;
     align-items: center; */
     flex-direction: column;
+  }
+
+
+
+
+
+  // blog section
+.blog-wrapper {
+  position: relative;
+  width: 1140px;
+  background-color: #ffffff;
+  margin: auto;
+  text-align: center;
+  border-radius: 15px;
+  box-shadow: 0 15px 25px 0 rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  padding-bottom: 40px;
+}
+
+.blog-header {
+  height: 150px;
+  background-color: #2196f3;
+  background-image: url("../images/sp_main_bg.png");
+  background-position: center;
+  background-size: cover;
+  border-radius: 15px;
+  border-bottom-left-radius: 0%;
+  border-bottom-right-radius: 0%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.blog-header h1 {
+	color: #ffffff;
+	font-size: 44px;
+  }
+
+  .blog-wrapper .blog-content .blogs{
+display: grid;
+grid-template-columns: 1fr 1fr;
+  padding: 30px 50px 50px;
+grid-gap: 30px;
+  }
+
+  .blog-wrapper .blog-content .blogs .card  {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    border-radius: 2px;
+  }
+  .blog-wrapper .blog-content .blogs .card .card-header{
+    position: relative;
+  }
+
+  .blog-wrapper .blog-content .blogs .card .card-header .post-date{
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    padding: 0.3em;
+    text-align: center;
+       z-index: 5;
+    border-radius: 2px;
+    position: absolute;
+    top: 15px;
+    right: 1em;
+    min-width: 44px;
+  }
+  .overlay {
+    position: absolute;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    color: #f1f1f1;
+    width: 100%;
+    height: 100%;
+    transition: .5s ease;
+    opacity:0;
+    color: white;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .card-header:hover .overlay{
+    opacity: 1;
+    cursor: pointer;
+  }
+
+  .blog-wrapper .blog-content .blogs .card .card-header span{
+    color: #2196f3;
+  }
+
+  .blog-wrapper .blog-content .blogs .card .card-header span:nth-child(1){
+    font-size: 21px;
+  }
+
+
+  .blog-wrapper .blog-content .blogs .card .card-header span:nth-child(2){
+    font-size: 12px;
+  }
+  .blog-wrapper .blog-content .blogs .card .card-header img{
+width: 100%;
+display: block;
+border-top-right-radius: 2px;
+border-top-left-radius: 2px;
+  }
+
+  .blog-wrapper .blog-content .blogs .card .card-body{
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 10px;
+  }
+
+  .blog-wrapper .blog-content .blogs .card .card-body P{
+    color: #9E9E9E;
+    font-size: 12px;
+  }
+
+  .blog-wrapper .blog-content .blogs .card .card-body h4{
+    color: #212121;
+  }
+
+  .blog-wrapper .blog-content button {
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 2.8;
+    padding: 0 1.5em;
+    outline: none;
+    border: 0;
+    border-radius: 3px;
+    background-color: #fff;
+    color: #212121;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.3);
   }
