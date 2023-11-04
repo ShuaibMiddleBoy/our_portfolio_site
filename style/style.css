@@ -30,6 +30,7 @@ html {
 }
 
 body {
+  overflow-x: hidden;
   background-image: url("../images/sp_main_bg.png");
   background-position: center;
   background-size: cover;
@@ -1272,7 +1273,7 @@ fieldset[disabled] .btn-link {
 
 @media screen and (max-width: 1130px) {
   .pt-page .section-inner {
-    margin: 0 20px 10px 20px;
+    margin: 0 0px 10px 0px;
   }
 }
 @media screen and (max-width: 1000px) {

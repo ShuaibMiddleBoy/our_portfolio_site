@@ -31,6 +31,7 @@ html {
   font-size: 62.5%;
 }
 body {
+  overflow-x: hidden;
   background-image: url("../images/sp_main_bg.png");
   background-position: center;
   background-size: cover;
@@ -1320,8 +1321,8 @@ border-top-left-radius: 2px;
 
 @media screen and (max-width: 1130px) {
     .pt-page .section-inner{
-      margin: 0 20px 10px 20px;
-  
+      margin: 0 0px 10px 0px;
+
     }
   }
 
