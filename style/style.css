@@ -1333,11 +1333,4 @@ fieldset[disabled] .btn-link {
     grid-template-columns: 1fr;
     grid-gap: 40px;
   }
-}
 
-@media screen and (max-width: 480px) {  
-  .portfolio-grid.three-columns figure {
-    width: calc(100% - 6px);
-  }
-
-}/*# sourceMappingURL=style.css.map */
