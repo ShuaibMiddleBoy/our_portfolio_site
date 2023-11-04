@@ -147,7 +147,7 @@ nav.navbar .navbar-right .menu li a.active::after {
 /* Add this to your existing CSS or link a new CSS file */
 
 .home-header .col > img {
-  width: 280px;
+  width: 60%;
   box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.1);
   border: 3px solid #fff;
 }
@@ -793,10 +793,9 @@ a {
 	margin-top: 30px;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
-	// align-items: center;
-	// justify-items: center;
 	grid-gap: 80px;
 }
+
 .pricing button{
 	color: #fff;
     border: 0;
@@ -1338,3 +1337,78 @@ border-top-left-radius: 2px;
     color: #212121;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.3);
   }
+
+
+
+
+
+
+@media screen and (max-width: 1000px) {
+.home-wrapper , .services-wrapper, .blog-wrapper, .contact-wrapper{
+  margin: 0 15px;
+  width: auto;
+}
+
+}
+
+
+@media screen and (max-width: 750px){
+.home-header{
+  grid-template-columns: 1fr;
+  height: auto;
+  text-align: center;
+  grid-gap: 40px;
+}
+
+.home-header .col > img {
+  width: 40%;
+}
+
+.home-header .col:nth-child(2) {
+  gap: 7px;
+}
+.home-header .col:nth-child(2) h1 {
+  font-size: 44px;
+}
+
+.home-header .col:nth-child(2) p {
+  font-size: 16px;
+}
+
+  .contact-header h1, .services-header h1, .blog-header h1{
+	font-size: 33px;
+  }
+
+  .home-content {
+    padding: 10px 50px 50px;
+    grid-template-columns: 1fr;
+    grid-gap:40px;
+  }
+
+  .services-content .services .row {
+    grid-template-columns: 1fr;
+  }
+
+  .services-content .clients .row {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .testimonails .row{
+    grid-template-columns:1fr ;
+    grid-gap: 30px;
+  }
+  .pricing .row{
+    grid-template-columns: 1fr;
+    grid-gap: 30px;
+  }
+
+  .blog-wrapper .blog-content .blogs{
+    grid-template-columns: 1fr;
+    grid-gap: 40px;
+      }
+
+      .contact-content{
+        grid-template-columns: 1fr;
+        grid-gap: 40px;
+          }
+}
