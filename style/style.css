@@ -210,6 +210,7 @@ nav.navbar .navbar-right .menu li a.active::after {
   grid-template-columns: 1fr 1fr;
   grid-gap: 50px;
   margin-top: 20px;
+  justify-content: center;
   line-height: 2.6rem;
 }
 
@@ -756,7 +757,7 @@ a {
   font-family: var(--content-font);
   font-size: 14px;
   font-weight: 500;
-  padding: 0 1.5em;
+  padding: 10px 20px;
   margin: 10px 0px;
   outline: none;
   cursor: pointer;
@@ -1175,6 +1176,7 @@ fieldset[disabled] .btn-link {
   grid-template-columns: 1fr 1fr;
   padding: 30px 50px 50px;
   grid-gap: 30px;
+  justify-content: center;
 }
 
 .blog-wrapper .blog-content .blogs .card {
@@ -1316,12 +1318,15 @@ fieldset[disabled] .btn-link {
     padding: 10px 50px 50px;
     grid-template-columns: 1fr;
     grid-gap: 40px;
+    justify-content: center;
   }
   .services-content .services .row {
     grid-template-columns: 1fr;
+    justify-content: center;
   }
   .services-content .clients .row {
     grid-template-columns: repeat(1, 1fr);
+    justify-content: center;
   }
   .testimonails .row {
     grid-template-columns: 1fr;
@@ -1338,6 +1343,7 @@ fieldset[disabled] .btn-link {
   .contact-content {
     grid-template-columns: 1fr;
     grid-gap: 40px;
+    justify-content: center;
   }
   header nav.navbar {
     max-width: 100% !important;
@@ -1404,6 +1410,9 @@ fieldset[disabled] .btn-link {
 @media screen and (max-width: 480px) {
   .portfolio-grid.three-columns figure {
     width: calc(100% - 6px);
+  }
+  .home-header .col:nth-child(2) h1 {
+    font-size: 34px;
   }
   .home-wrapper, .services-wrapper, .blog-wrapper, .contact-wrapper {
     width: 100%;
