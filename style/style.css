@@ -1260,12 +1260,30 @@ fieldset[disabled] .btn-link {
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
+
+@media screen and (max-width: 1130px) {
+  .pt-page .section-inner{
+    margin: 0 20px 10px 20px;
+
+  }
+}
+
 @media screen and (max-width: 1000px) {
   .home-wrapper, .services-wrapper, .blog-wrapper, .contact-wrapper {
     margin: 0 15px;
     width: auto;
   }
 }
+
+@media screen and (max-width: 765px) {
+  .col-2{
+    grid-template-columns: 1fr;
+  }
+  .portfolio-grid.three-columns figure {
+    width: calc(50% - 6px);
+  }
+}
+
 @media screen and (max-width: 750px) {
   .home-header {
     grid-template-columns: 1fr;
@@ -1315,4 +1333,4 @@ fieldset[disabled] .btn-link {
     grid-template-columns: 1fr;
     grid-gap: 40px;
   }
-}/*# sourceMappingURL=style.css.map */
+
