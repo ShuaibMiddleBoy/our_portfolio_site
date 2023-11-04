@@ -10,10 +10,10 @@
         }
 
         updateProgressBars();
-        
 
 
-// for filteration of portfolio projects 
+
+// for filteration of portfolio projects
 document.addEventListener("DOMContentLoaded", function () {
     // Get all filter links
     const filterLinks = document.querySelectorAll(".portfolio-filters a");
@@ -49,4 +49,13 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         });
     });
+});
+
+
+const hamburgerMenu = document.querySelector('.hamburger-menu');
+const menu = document.querySelector('.navbar-right');
+
+hamburgerMenu.addEventListener('click', function () {
+  menu.classList.toggle('open');
+  menu.classList.toggle('closed');
 });

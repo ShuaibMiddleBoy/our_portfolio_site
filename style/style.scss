@@ -119,6 +119,17 @@ nav.navbar .navbar-right .menu li a.active::after {
   width: 25px;
 }
 
+.navbar-right.open {
+  transform: translateX(0);
+  transition: transform 0.5s ease-in-out;
+}
+
+.hamburger-menu{
+  display: none;
+  cursor: pointer;
+}
+
+
 // home section
 .home-wrapper {
   position: relative;
@@ -1411,4 +1422,83 @@ border-top-left-radius: 2px;
         grid-template-columns: 1fr;
         grid-gap: 40px;
           }
+          header nav.navbar {
+            max-width: 100%!important;
+            width: auto;
+            background-color: #007bff;
+            margin: auto;
+            display: flex;
+            margin-bottom: 30px;
+            padding: 0px 50px;
+          }
+          header nav.navbar .logo h1{
+            color: white;
+          }
+          header nav.navbar .logo h1 > span.mention{
+            color: white;
+          }
+          .navbar-right{
+            display: block;
+            position: fixed;
+            top: 50px;
+            right: 0;
+            height: 100vh;
+            background-color: #007bff;
+            width: 70%;
+            z-index: 999;
+            max-width: 300px;
+            padding: 20px;
+            transform: translateX(100%);
+          }
+          nav.navbar .navbar-right .menu {
+            display: flex;
+            flex-direction: column;
+            margin: 0px 0;
+            align-items: start;
+
+          }
+          nav.navbar .navbar-right .menu li a {
+            color: white;
+          }
+
+          .hamburger-menu{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+          }
+          .bar{
+            width: 20px;
+    height: 3px;
+    outline-style: none;
+    background-color: #fff; /* Adjust the color as needed */
+    margin: 2px 0;
+    opacity: .9;
+    border-radius: 1px;
+          }
+          header{
+            position: sticky;
+            top: 0;
+            z-index: 100
+          }
+
+.navbar-right.closed {
+  transform: translateX(300%);
+  transition: transform 0.5s ease-in-out;
+}
+}
+
+@media screen and (max-width: 765px) {
+  .col-2{
+    grid-template-columns: 1fr;
+  }
+  .portfolio-grid.three-columns figure {
+    width: calc(50% - 6px);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .portfolio-grid.three-columns figure {
+    width: calc(100% - 6px);
+  }
 }
