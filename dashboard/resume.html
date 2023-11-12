@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume - Dashboard</title>
+</head>
+
+<body>
+    <h1>Resume - Dashboard</h1>
+    <form method="POST" id="resumeForm" enctype="multipart/form-data">
+        <h2>Education</h2>
+        <div id="education"></div>
+        <button type="button" id="addEducation">Add Education</button><br><br>
+
+        <h2>Experience</h2>
+        <div id="experience"></div>
+        <button type="button" id="addExperience">Add Experience</button><br><br>
+
+        <h2>Coding</h2>
+        <div id="coding"></div>
+        <button type="button" id="addLanguage">Add Language</button><br><br>
+
+        <h2>Resume</h2>
+        <label for="resume">Resume:</label>
+        <input type="file" id="resume" name="resume" required><br><br>
+
+        <input type="submit" value="Update Resume" style="background-color: blue; color:white">
+    </form>
+
+    <script>
+        // education
+        const addEducationButton = document.getElementById("addEducation");
+        const educationContainer = document.getElementById("education");
+
+        function addEducation() {
+            const educationDiv = document.createElement("div");
+
+            educationDiv.innerHTML = `
+                <label for="educationtitle">Education Title:</label>
+                <input type="text" name="education[title][]" required><br><br>
+                
+                <label for="graduationdate">Graduation Date:</label>
+                <input type="text" name="education[date][]" required><br><br>
+
+                <label for="institutename">Institute Name:</label>
+                <input type="text" name="education[institute][]" required><br><br>
+
+                <label for="educationdescription">Education Description:</label>
+                <input type="text" name="education[description][]" required><br><br>
+                
+                <button type="button" class="removeEducation">Remove Education</button><br><br>
+            `;
+            educationContainer.appendChild(educationDiv);
+
+            // Add an event listener to the remove button
+            const removeEducationButton = educationDiv.querySelector(".removeEducation");
+            removeEducationButton.addEventListener("click", () => {
+                educationContainer.removeChild(educationDiv);
+            });
+        }
+        addEducationButton.addEventListener("click", addEducation);
+
+
+        // experience
+        const addExperienceButton = document.getElementById("addExperience");
+        const experienceContainer = document.getElementById("experience");
+
+        function addExperience() {
+            const experienceDiv = document.createElement("div");
+
+            experienceDiv.innerHTML = `
+                <label for="position">Position Title:</label>
+                <input type="text" name="experience[position][]" required><br><br>
+                
+                <label for="Timeline">Timeline:</label>
+                <input type="text" name="experience[timeline][]" required><br><br>
+
+                <label for="company">Company Name:</label>
+                <input type="text" name="experience[company][]" required><br><br>
+
+                <label for="description">Experience Description:</label>
+                <input type="text" name="experience[description][]" required><br><br>
+                
+                <button type="button" class="removeExperience">Remove Experience</button><br><br>
+            `;
+
+            experienceContainer.appendChild(experienceDiv);
+
+            // Add an event listener to the remove button
+            const removeExperienceButton = experienceDiv.querySelector(".removeExperience");
+            removeExperienceButton.addEventListener("click", () => {
+                experienceContainer.removeChild(experienceDiv);
+            });
+        }
+        addExperienceButton.addEventListener("click", addExperience);
+
+
+        // coding 
+        const addLanuageButton = document.getElementById("addLanguage");
+        const codingContainer = document.getElementById("coding");
+
+        function addCoding() {
+            const languageDiv = document.createElement("div");
+
+            languageDiv.innerHTML = `
+                <label for="languagename">Language Name:</label>
+                <input type="text" name="coding[name][]" required><br><br>
+                
+                <label for="languagepercent">Percentage:</label>
+                <input type="text" name="coding[percentage][]" required><br><br>
+
+                <button type="button" class="removeLanguage">Remove Language</button><br><br>
+            `;
+
+            codingContainer.appendChild(languageDiv);
+
+            // Add an event listener to the remove button
+            const removeLanguageButton = languageDiv.querySelector(".removeLanguage");
+            removeLanguageButton.addEventListener("click", () => {
+                codingContainer.removeChild(languageDiv);
+            });
+         }
+
+
+
+        addLanuageButton.addEventListener("click", addCoding);
+
+
+
+       // Handle form submission
+    const resumeForm = document.getElementById("resumeForm");
+    resumeForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(resumeForm);
+        try {
+            const response = await fetch('http://localhost:8000/api/resume', {
+                method: 'POST',
+                body: formData,  // Use formData directly as the body
+            });
+
+            if (response.status === 200) {
+                alert('Resume uploaded successfully.');
+            } else {
+                alert('Error uploading resume.');
+            }
+        } catch (error) {
+            console.error(error);
+            alert('Error uploading resume.', error);
+        }
+    });
+    </script>
+</body>
+
+</html>
