@@ -1,15 +1,15 @@
-        // Function for progress bars (Resume page)
-        function updateProgressBars() {
-            const skillContainers = document.querySelectorAll('.skill-container');
+// Function for progress bars (Resume page)
+function updateProgressBars() {
+    const skillContainers = document.querySelectorAll('.skill-container');
 
-            skillContainers.forEach((container) => {
-                const skillValue = container.getAttribute('data-value');
-                const progressBar = container.querySelector('.skill-percentage');
-                progressBar.style.width = skillValue + '%';
-            });
-        }
+    skillContainers.forEach((container) => {
+        const skillValue = container.getAttribute('data-value');
+        const progressBar = container.querySelector('.skill-percentage');
+        progressBar.style.width = skillValue + '%';
+    });
+}
 
-        updateProgressBars();
+updateProgressBars();
 
 
 
@@ -56,6 +56,45 @@ const hamburgerMenu = document.querySelector('.hamburger-menu');
 const menu = document.querySelector('.navbar-right');
 
 hamburgerMenu.addEventListener('click', function () {
-  menu.classList.toggle('open');
-  menu.classList.toggle('closed');
+    menu.classList.toggle('open');
+    menu.classList.toggle('closed');
+});
+
+
+// Work with API's
+const URL = "http://localhost:8000/api";
+
+//POST METHOD Using Fetch Api For Contact Form
+const form = document.getElementById('contactForm');
+const nameInput = document.getElementById('name');
+const emailInput = document.getElementById('email');
+const messageInput = document.getElementById('message');
+
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const name = nameInput.value;
+    const email = emailInput.value;
+    const message = messageInput.value;
+
+    const formData = {
+        name,
+        email,
+        message,
+    };
+    try {
+        const response = await fetch(`${URL}/contact`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json", // Specify JSON content type
+                },
+                body: JSON.stringify(formData)
+            });
+        if (response.ok) {
+            const data = await response.json();
+            console.log(data);
+        }
+    } catch (error) {
+        console.log(error);
+    }
 });
