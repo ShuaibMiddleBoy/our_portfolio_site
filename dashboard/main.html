@@ -1,16 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style/style.css" />
     <script src="./script/script.js"></script>
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="website">
-        <a href="../index.html">website</a>
+      <a href="../index.html">website</a>
     </div>
-<h1>Welcome to Dashboard</h1>
-</body>
+    <h1>Welcome to Dashboard</h1>
+
+    <h1>Create Home</h1>
+    <div>
+      <label for="name">Name:</label>
+      <input type="text" id="name" required /><br /><br />
+
+      <label for="skills">Skills (comma-separated):</label>
+      <input
+        type="text"
+        id="skills"
+        placeholder="Software Engineer, Web Developer"
+      /><br /><br />
+
+      <label for="image">Image (JPG or PNG):</label>
+      <input
+        type="file"
+        id="image"
+        accept=".jpg, .jpeg, .png"
+        required
+      /><br /><br />
+
+      <label for="aboutMe">About Me:</label>
+      <textarea id="aboutMe" rows="4"></textarea><br /><br />
+
+      <label for="resumeLink">Resume Link:</label>
+      <input type="text" id="resumeLink" /><br /><br />
+
+      <h2>Address</h2>
+      <div id="addresses"></div>
+      <button type="button" id="addAddress">Add Address</button><br /><br />
+
+      <h2>Social Links</h2>
+      <div id="socialLinks"></div>
+      <button type="button" id="addSocialLink">Add Social Link</button
+      ><br /><br />
+
+      <button id="createHome">Create Home</button>
+    </div>
+
+    <script>
+      const addressesContainer = document.getElementById("addresses");
+      const socialLinksContainer = document.getElementById("socialLinks");
+      const imageInput = document.getElementById("image");
+
+      // Add Address
+      document.getElementById("addAddress").addEventListener("click", () => {
+        const addressDiv = document.createElement("div");
+        addressDiv.classList.add("address");
+
+        addressDiv.innerHTML = `
+                <label for="addressTitle">Address Title:</label>
+                <input type="text" class="addressTitle" required><br><br>
+                <label for "addressValue">Address Value:</label>
+                <input type="text" class="addressValue" required><br><br>
+                <button type="button" class="removeAddress">Remove Address</button><br><br>
+            `;
+
+        addressesContainer.appendChild(addressDiv);
+
+        const removeAddressButton = addressDiv.querySelector(".removeAddress");
+        removeAddressButton.addEventListener("click", () => {
+          addressesContainer.removeChild(addressDiv);
+        });
+      });
+
+      // Add Social Link
+      document.getElementById("addSocialLink").addEventListener("click", () => {
+        const socialLinkDiv = document.createElement("div");
+
+        socialLinkDiv.innerHTML = `
+                <label for="socialLinkTitle">Title:</label>
+                <input type="text" id="socialLinkTitle" required><br><br>
+                <label for="socialLinkLink">Link:</label>
+                <input type="text" id="socialLinkLink" required><br><br>
+            `;
+
+        socialLinksContainer.appendChild(socialLinkDiv);
+      });
+
+      document
+        .getElementById("createHome")
+        .addEventListener("click", async () => {
+          const name = document.getElementById("name").value;
+          const skills = document
+            .getElementById("skills")
+            .value.split(",")
+            .map((skill) => skill.trim());
+          const aboutMe = document.getElementById("aboutMe").value;
+          const resumeLink = document.getElementById("resumeLink").value;
+
+          const addresses = Array.from(
+            addressesContainer.querySelectorAll(".address")
+          ).map((addressDiv) => {
+            const title = addressDiv.querySelector(".addressTitle").value;
+            const value = addressDiv.querySelector(".addressValue").value;
+            return { title, value };
+          });
+
+          const socialLinks = Array.from(
+            socialLinksContainer.querySelectorAll("div")
+          ).map((linkDiv) => ({
+            title: linkDiv.querySelector("#socialLinkTitle").value,
+            link: linkDiv.querySelector("#socialLinkLink").value,
+          }));
+
+          const imageFile = imageInput.files[0];
+
+          const homeData = {
+            name,
+            skills,
+            aboutMe,
+            resumeLink,
+            address: addresses,
+            socialLinks,
+          };
+          homeData.image = imageFile;
+        //   console.log(homeData);
+                    try {
+                const response = await fetch('http://localhost:8000/api/home', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(homeData),
+                });
+
+                if (response.status === 201) {
+                    alert('Home created successfully.');
+                } else {
+                    alert('Error creating home.');
+                }
+            } catch (error) {
+                console.error(error);
+                alert('Error creating home.', error);
+            }
+        });
+    </script>
+  </body>
 </html>

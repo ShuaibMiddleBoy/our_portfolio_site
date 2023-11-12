@@ -26,7 +26,7 @@
         <label for="resume">Resume:</label>
         <input type="file" id="resume" name="resume" required><br><br>
 
-        <input type="submit" value="Update Resume" style="background-color: blue; color:white">
+        <input type="submit" value="Submit" style="background-color: blue; color:white">
     </form>
 
     <script>
@@ -40,7 +40,7 @@
             educationDiv.innerHTML = `
                 <label for="educationtitle">Education Title:</label>
                 <input type="text" name="education[title][]" required><br><br>
-                
+
                 <label for="graduationdate">Graduation Date:</label>
                 <input type="text" name="education[date][]" required><br><br>
 
@@ -49,7 +49,7 @@
 
                 <label for="educationdescription">Education Description:</label>
                 <input type="text" name="education[description][]" required><br><br>
-                
+
                 <button type="button" class="removeEducation">Remove Education</button><br><br>
             `;
             educationContainer.appendChild(educationDiv);
@@ -73,7 +73,7 @@
             experienceDiv.innerHTML = `
                 <label for="position">Position Title:</label>
                 <input type="text" name="experience[position][]" required><br><br>
-                
+
                 <label for="Timeline">Timeline:</label>
                 <input type="text" name="experience[timeline][]" required><br><br>
 
@@ -82,7 +82,7 @@
 
                 <label for="description">Experience Description:</label>
                 <input type="text" name="experience[description][]" required><br><br>
-                
+
                 <button type="button" class="removeExperience">Remove Experience</button><br><br>
             `;
 
@@ -97,7 +97,7 @@
         addExperienceButton.addEventListener("click", addExperience);
 
 
-        // coding 
+        // coding
         const addLanuageButton = document.getElementById("addLanguage");
         const codingContainer = document.getElementById("coding");
 
@@ -107,7 +107,7 @@
             languageDiv.innerHTML = `
                 <label for="languagename">Language Name:</label>
                 <input type="text" name="coding[name][]" required><br><br>
-                
+
                 <label for="languagepercent">Percentage:</label>
                 <input type="text" name="coding[percentage][]" required><br><br>
 
@@ -134,22 +134,36 @@
     resumeForm.addEventListener("submit", async (e) => {
         e.preventDefault();
 
-        const formData = new FormData(resumeForm);
-        try {
-            const response = await fetch('http://localhost:8000/api/resume', {
-                method: 'POST',
-                body: formData,  // Use formData directly as the body
-            });
+        const educationInputs = document.querySelectorAll("input[name^='education']");
 
-            if (response.status === 200) {
-                alert('Resume uploaded successfully.');
-            } else {
-                alert('Error uploading resume.');
-            }
-        } catch (error) {
-            console.error(error);
-            alert('Error uploading resume.', error);
-        }
+// Iterate through the education inputs and get their values
+const educationData = {};
+educationInputs.forEach(input => {
+    const name = input.name.replace("education[", "").replace("]", "");
+    const value = input.value;
+    educationData[name] = value;
+});
+
+console.log(educationData);
+
+
+    //     const formData = new FormData(resumeForm);
+    //     console.log(formData);
+    //     try {
+    //         const response = await fetch('http://localhost:8000/api/resume', {
+    //             method: 'POST',
+    //             body: formData,  // Use formData directly as the body
+    //         });
+
+    //         if (response.status === 200) {
+    //             alert('Resume uploaded successfully.');
+    //         } else {
+    //             alert('Error uploading resume.');
+    //         }
+    //     } catch (error) {
+    //         console.error(error);
+    //         alert('Error uploading resume.', error);
+    //     }
     });
     </script>
 </body>
