@@ -102,13 +102,13 @@
           const aboutMe = document.getElementById("aboutMe").value;
           const resumeLink = document.getElementById("resumeLink").value;
 
-          const addresses = Array.from(
-            addressesContainer.querySelectorAll(".address")
-          ).map((addressDiv) => {
-            const title = addressDiv.querySelector(".addressTitle").value;
-            const value = addressDiv.querySelector(".addressValue").value;
-            return { title, value };
-          });
+          const addresses = [];
+    const addressDivs = addressesContainer.querySelectorAll(".address");
+    addressDivs.forEach((addressDiv) => {
+        const title = addressDiv.querySelector(".addressTitle").value;
+        const value = addressDiv.querySelector(".addressValue").value;
+        addresses.push({ title, value });
+    });
 
           const socialLinks = Array.from(
             socialLinksContainer.querySelectorAll("div")
@@ -117,26 +117,20 @@
             link: linkDiv.querySelector("#socialLinkLink").value,
           }));
 
-          const imageFile = imageInput.files[0];
-
-          const homeData = {
-            name,
-            skills,
-            aboutMe,
-            resumeLink,
-            address: addresses,
-            socialLinks,
-          };
-          homeData.image = imageFile;
-        //   console.log(homeData);
+          const formData = new FormData();
+  const imageFile = imageInput.files[0];
+  formData.append("image", imageFile);
+  formData.append("name", JSON.stringify(name));
+  formData.append("skills", JSON.stringify(skills));
+  formData.append("aboutMe", JSON.stringify(aboutMe));
+  formData.append("resumeLink", JSON.stringify(resumeLink));
+  formData.append("address", JSON.stringify(addresses));
+  formData.append("socialLinks", JSON.stringify(socialLinks));
                     try {
-                const response = await fetch('http://localhost:8000/api/home', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(homeData),
-                });
+                        const response = await fetch("http://localhost:8000/api/home", {
+      method: "POST",
+      body: formData,
+    });
 
                 if (response.status === 201) {
                     alert('Home created successfully.');
