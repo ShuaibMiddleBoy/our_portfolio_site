@@ -10,53 +10,69 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap"
         rel="stylesheet" />
-        <!-- css  -->
+    <!-- css  -->
+
+
+    <!-- aos library for animatiion -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="./style/style.css" />
 </head>
 
-<body>
+<body onload="preoloaderFunc()">
 
- <!-- header  -->
- <header>
-    <nav class="navbar">
-      <div class="navbar-left">
-        <div class="logo">
-          <h1 class="site-title">Alex <span class="mention">Smith</span></h1>
-        </div>
-      </div>
-      <div class="navbar-right closed">
-        <ul class="menu">
-          <li>
-            <a href="index.html">Home</a>
-          </li>
-          <li>
-            <a href="/" class="active">Resume</a>
-          </li>
-          <li>
-            <a href="services.html">Services</a>
-          </li>
-          <li>
-            <a href="portfolio.html">Portfolio</a>
-          </li>
-          <li>
-            <a href="blog.html">Blog</a>
-          </li>
-          <li>
-            <a href="contact.html">Contact</a>
-          </li>
-        </ul>
-      </div>
-      <div class="hamburger-menu">
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-      </div>
-    </nav>
-</header>
+    <!-- preloader  -->
+    <div class="lds-roller" id="preloader">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
+    <!-- header  -->
+    <header>
+        <nav class="navbar">
+            <div class="navbar-left">
+                <div class="logo">
+                    <h1 class="site-title">Alex <span class="mention">Smith</span></h1>
+                </div>
+            </div>
+            <div class="navbar-right closed">
+                <ul class="menu">
+                    <li>
+                        <a href="index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="/" class="active">Resume</a>
+                    </li>
+                    <li>
+                        <a href="services.html">Services</a>
+                    </li>
+                    <li>
+                        <a href="portfolio.html">Portfolio</a>
+                    </li>
+                    <li>
+                        <a href="blog.html">Blog</a>
+                    </li>
+                    <li>
+                        <a href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="hamburger-menu">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </nav>
+    </header>
 
 
-<!-- Resume section  -->
-    <section data-id="resume" data-title="Resume" class="pt-page pt-page-resume">
+    <!-- Resume section  -->
+    <section data-id="resume" data-title="Resume" class="pt-page pt-page-resume" data-aos="fade-down-left">
         <div class="section-inner custom-page-content">
             <div class="page-header">
                 <h2 class="section-title">Resume</h2>
@@ -186,7 +202,8 @@
                             </div>
                             <div class="row">
                                 <div class=" col-xs-12 col-sm-12 center">
-                                    <div id="col_inner_id-653d70c498885" class="fw-col-inner" data-paddings="0px 0px 0px 0px">
+                                    <div id="col_inner_id-653d70c498885" class="fw-col-inner"
+                                        data-paddings="0px 0px 0px 0px">
                                         <a href="./index.html" class="btn btn-secondary" download>
                                             Download Resume
                                         </a>
@@ -202,11 +219,18 @@
 
 
     <!-- footer  -->
-<footer class="copyright">
-    <p>© 2023 All rights reserved. Made By <span class="mention">Shuaib & Farooq</span></p>
-</footer>
+    <footer class="copyright">
+        <p>© 2023 All rights reserved. Made By <span class="mention">Shuaib & Farooq</span></p>
+    </footer>
 
-<script src="./script/script.js" defer></script>
+    <script src="./script/script.js" defer></script>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+        });
+    </script>
 </body>
 
 </html>
