@@ -10,8 +10,7 @@
 <body>
     <h1>Menu Dashboard</h1>
     <form method="POST" id="menuForm">
-        <label for="logoImage">Logo Image:</label>
-        <input type="file" id="logoImage" name="logoImage" accept="image/*" required><br><br>
+        <div id="logo"></div>
 
         <h2>Menu Items</h2>
         <div id="menuItems">
@@ -23,6 +22,39 @@
     </form>
 
     <script>
+        // to set backend data in fields (to not lose data by refreshing)
+        function setFormFields(data) {
+
+            const logoContainer = document.getElementById("logo");
+            const { logoImage, menuItems } = data;
+
+            const logoDiv = document.createElement("div");
+            logoDiv.innerHTML = `
+            <label for="logoImage">Logo Image:</label>
+            <img src="http://localhost:8000/public/images/${logoImage}" style="max-width: 180px;" alt="Resume" ><br><br>
+            <input type="file" id="logoImage" name="logoImage" accept="image/*" ><br><br>
+            `;
+            logoContainer.appendChild(logoDiv);
+
+            menuItems.forEach((menuItem) => {
+                const menuItemDiv = document.createElement("div");
+                menuItemDiv.innerHTML = `
+                <label for="menuItemTitle">Menu Item Title:</label>
+                <input type="text" name="menuItems[title][]" value="${menuItem.title}" required><br><br>
+                <label for="menuItemUrl">Menu Item URL:</label>
+                <input type="text" name="menuItems[url][]" value="${menuItem.link}" required><br><br>
+                <button type="button" class="removeMenuItem">Remove Menu Item</button><br><br>
+            `;
+                menuItemsContainer.appendChild(menuItemDiv);
+                // Add an event listener to the remove button
+                const removeMenuItemButton = menuItemDiv.querySelector(".removeMenuItem");
+                removeMenuItemButton.addEventListener("click", () => {
+                    menuItemsContainer.removeChild(menuItemDiv);
+                });
+            });
+        }
+
+
         // JavaScript code to dynamically add menu item fields
         const addMenuItemButton = document.getElementById("addMenuItem");
         const menuItemsContainer = document.getElementById("menuItems");
@@ -77,6 +109,25 @@
                 console.error('Error:', error);
             }
         });
+
+
+        // get data from backend 
+        async function getMenuData() {
+            try {
+                const res = await fetch('http://localhost:8000/api/menu');
+
+                if (!res.status === 200) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await res.json();
+                // console.log(data);
+                setFormFields(data);
+            } catch (error) {
+                console.error('There has been a problem with your fetch operation:', error);
+            }
+        }
+        window.addEventListener('load', getMenuData);
+
     </script>
 </body>
 

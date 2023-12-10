@@ -62,7 +62,7 @@ header nav.navbar {
   display: flex;
   justify-content: space-between;
   padding-top: 20px;
-  padding-bottom: 20px;
+  padding-bottom: 15px;
 }
 
 .logo .site-title {
@@ -71,6 +71,13 @@ header nav.navbar {
   font-style: normal;
   font-size: 20px;
   margin: 20px 0;
+}
+
+.logo img{
+  border-radius: 8px; 
+  width: 80px; /* Adjust width as needed */
+  height: auto;
+  margin-left: 2px;
 }
 
 span.mention {
@@ -1019,12 +1026,10 @@ fieldset[disabled] .btn-link {
 }
 
 .portfolio-grid figure a {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  z-index: 3;
+  width: fit-content;
+  color: white;
+  font-weight: bolder;
+  font-size: 1.5rem;
 }
 
 .portfolio-grid figure .portfolio-preview-desc {
@@ -1295,6 +1300,11 @@ fieldset[disabled] .btn-link {
     margin: 0 15px;
     width: auto;
   }
+  .logo img{
+    width: 60px; /* Adjust width as needed */
+    margin-left: 12px;
+    padding-top: 3px;
+  }
 }
 @media screen and (max-width: 765px) {
   .col-2 {
@@ -1302,6 +1312,9 @@ fieldset[disabled] .btn-link {
   }
   .portfolio-grid.three-columns figure {
     width: calc(50% - 6px);
+  }
+  .logo img{
+    margin-left: 0px;
   }
 }
 @media screen and (max-width: 750px) {
@@ -1363,7 +1376,7 @@ fieldset[disabled] .btn-link {
     background-color: #007bff;
     margin: auto;
     display: flex;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     padding: 0px 50px;
   }
   header nav.navbar .logo h1 {
@@ -1432,6 +1445,9 @@ fieldset[disabled] .btn-link {
     margin: 0;
   }
 }
+
+
+
 /* preloader css  */
 .lds-roller {
   position: fixed;
@@ -1561,4 +1577,4 @@ fieldset[disabled] .btn-link {
   to {
     transform: translateX(100%);
   }
-}/*# sourceMappingURL=style.css.map */
+}
