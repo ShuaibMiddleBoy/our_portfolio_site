@@ -177,6 +177,7 @@ nav.navbar .navbar-right .menu li a.active::after {
 /* Add this to your existing CSS or link a new CSS file */
 .home-header .col > img {
   width: 60%;
+  height: 280px;
   box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.1);
   border: 3px solid #fff;
 }
@@ -264,7 +265,9 @@ nav.navbar .navbar-right .menu li a.active::after {
   color: #212121;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.3);
 }
-
+.home-content .col:first-child button a{
+  color: #212121;
+}
 .home-content .col:nth-child(2) ul li {
   list-style: none;
   display: grid;

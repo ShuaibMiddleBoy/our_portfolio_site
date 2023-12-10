@@ -11,7 +11,8 @@
     href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap"
     rel="stylesheet" />
 
-
+<!-- Link Swiper's CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
   <!-- font awesome icons cdn  -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
@@ -73,11 +74,11 @@
   <div class="home-wrapper" data-aos="fade-right">
     <div class="home-header">
       <div class="col">
-        <img src="./images/photo.png" alt="">
+        <img id="userImage" alt="">
       </div>
       <div class="col">
-        <h1>Alex Smith</h1>
-        <p>Web developer</p>
+        <h1 id="name"></h1>
+        <p id="skills"></p>
         <div class="social-links">
           <a href="">
             <i class="fa-brands fa-twitter"></i>
@@ -97,15 +98,16 @@
     </div>
     <div class="home-content">
       <div class="col">
-        <h3>About <span class="mention">Me</span></h3>
-        <p>Hello! I’m Alex Smith. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean fermentum ullamcorper
-          sem, at placerat dolor volutpat ac. Duis nulla enim, condimentum nec ultricies.</p>
-        <button>Download Resume</button>
+        <h3>About <span class="mention">Us</span></h3>
+        <p id="aboutMe"></p>
+        <button>
+          <a id="resumeLink" download>Download Resume</a>
+          </button>
       </div>
       <div class="col">
         <ul>
           <li>
-            <span>Age</span>
+           <span>Age</span>
             <span>24</span>
           </li>
           <li>
@@ -142,10 +144,58 @@
   <!-- aos animatiion library  -->
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script>
+        async function fetchData() {
+    try {
+        const response = await fetch('http://localhost:8000/api/home');
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        populateData(data[0]); // Assuming the API returns an array and you want the first item
+    } catch (error) {
+        console.error('Fetch error:', error);
+    }
+}
+
+function populateData(homeData) {
+    // Assuming you have HTML elements with these IDs
+   document.getElementById('aboutMe').textContent = homeData.aboutMe || " ";
+    document.getElementById('name').textContent = homeData.name || '';
+    document.getElementById('resumeLink').setAttribute('href', homeData.resumeLink || '#');
+    document.getElementById('userImage').setAttribute('src', `http://localhost:8000/public/images/${homeData.image}` || './path/to/default/image.jpg');
+    // Populate social links
+    // const socialLinksContainer = document.getElementById('socialLinks');
+    // homeData.socialLinks.forEach(link => {
+    //     const anchor = document.createElement('a');
+    //     anchor.setAttribute('href', link.link);
+    //     anchor.textContent = link.title; // or use an icon based on the title
+    //     socialLinksContainer.appendChild(anchor);
+    // });
+
+    // Populate skills
+    const skillsContainer = document.getElementById('skills');
+    homeData.skills.forEach(skill => {
+        const skillElement = document.createElement('span');
+        skillElement.textContent = skill;
+        skillsContainer.appendChild(skillElement);
+    });
+
+    // Populate addresses
+    const addressContainer = document.getElementById('address');
+    homeData.address.forEach(addr => {
+        const addressElement = document.createElement('p');
+        addressElement.textContent = `${addr.title}: ${addr.value}`;
+        addressContainer.appendChild(addressElement);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', fetchData);
+
     AOS.init({
       duration: 1000,
     });
 
+    var swiper = new Swiper(".mySwiper", {});
   </script>
 </body>
 
