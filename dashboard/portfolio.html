@@ -4,143 +4,148 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./style/portfolio.css" />
+    <script src="script/portfolio.js" defer></script>
     <title>Portfolio - Dashboard</title>
 </head>
 
 <body>
-    <h1>Portfolio - Dashboard</h1>
-    <form method="POST" id="portfolioForm" enctype="multipart/form-data">
-        <h2>Portfolio</h2>
-        <div id="portfolio"></div>
-        <span id="imageNameDisplay"></span>
-        <button type="button" id="addProject">Add Project</button><br><br>
+        <div id="wrapper">
+            <div id="content">
+              <div id="main" class="showSidebar">
+                <div class="header">
+                  <div class="left">
+                    <div class="toggleBtn cross" onclick="toggleSidebar()">
+                      <i id="menuIcon" class="fa-solid fa-times"></i>
+                    </div>
+                  </div>
+                  <div class="right">
+                    <a href="" onclick="toggleDropdown(event)"
+                      ><img
+                        style="width: 30px; border-radius: 50%"
+                        src="./images/login.png"
+                        alt=""
+                    /></a>
+                    <div class="dropdown" id="myDropdown">
+                      <a href="./login.html">Login</a>
+                      <a href="#">Settings</a>
+                    </div>
+                  </div>
+                </div>
+               
+                <!-- Main Content  -->
+          <div class="mainContent">
+              <div class="container">
 
-        <input type="submit" value="Update Portfolio" style="background-color: blue; color:white">
-    </form>
-    <script>
-        // to set backend data in fields (to not lose data by refreshing)
-        function setFormFields(data) {
-
-            const portfolioContainer = document.getElementById("portfolio");
-            const projects = data.projects;
-
-            projects.forEach((project) => {
-                const projectDiv = document.createElement("div");
-                projectDiv.innerHTML = ` 
-                <label for="projecttitle">Project Title:</label>
-                    <input type="text" name="project[title][]" value="${project.title}" required><br><br>
-
-                    <label for="projectimage">Project Image:</label>
-                    <img src="http://localhost:8000/public/images/${project.image}" style="max-width: 180px;" alt="Resume" ><br><br>
-                    <input type="file" name="projectImage" value="${project.image}"><br><br>
-
-                    <label for="projectDetails">Project Details:</label>
-                    <textarea name="project[details][]" cols="30" rows="5">${project.details}</textarea><br><br>
-
-                    <label for="projectcategory">Project Category:</label>
-                    <input type="text" name="project[category][]" value="${project.category}" required><br><br>
-
-                    <label for="projectPreview">Project Preview (Link):</label>
-                    <input type="text" name="project[preview][]" value="${project.previewLink}" required><br><br>
-
-                    <button type="button" class="removeProject">Remove Project</button><br><br>
-                `;
-                portfolioContainer.appendChild(projectDiv);
-
-                // Add an event listener to the remove button
-                const removeProjectButton = projectDiv.querySelector(".removeProject");
-                removeProjectButton.addEventListener("click", () => {
-                    portfolioContainer.removeChild(projectDiv);
-                });
-            });
-        }
-
-
-        // add project on click 
-        const addProjectButton = document.getElementById("addProject");
-        const portfolioContainer = document.getElementById("portfolio");
-
-        function addProject() {
-            const projectDiv = document.createElement("div");
-
-            projectDiv.innerHTML = `
-                <label for="projecttitle">Project Title:</label>
-                <input type="text" name="project[title][]" required><br><br>
-
-                <label for="projectimage">Project Image:</label>
-                <input type="file" name="projectImage"><br><br>
-
-                <label for="projectDetails">Project Details:</label>
-                <textarea name="project[details][]" cols="30" rows="5"></textarea><br><br>
-
-                <label for="projectcategory">Project Category:</label>
-                <input type="text" name="project[category][]" required><br><br>
-
-                <label for="projectPreview">Project Preview (Link):</label>
-                <input type="text" name="project[preview][]" required><br><br>
-                
-                <button type="button" class="removeProject">Remove Project</button><br><br>
-            `;
-            portfolioContainer.appendChild(projectDiv);
-
-            // Add an event listener to the remove button
-            const removeProjectButton = projectDiv.querySelector(".removeProject");
-            removeProjectButton.addEventListener("click", () => {
-                portfolioContainer.removeChild(projectDiv);
-            });
-        }
-        addProjectButton.addEventListener("click", addProject);
-
-        // Handle form submission
-        async function sendDataToServer() {
-            const portfolioForm = document.getElementById("portfolioForm");
-            const formData = new FormData(portfolioForm); // Use FormData to collect form data
-
-            try {
-                const response = await fetch('http://localhost:8000/api/portfolio', {
-                    method: 'POST',
-                    body: formData, // Send FormData directly instead of JSON.stringify
-                });
-
-                if (response.status === 200) {
-                    alert('Portfolio uploaded successfully.');
-                } else {
-                    alert('Error uploading portfolio.');
-                }
-            } catch (error) {
-                console.error(error);
-                alert('Error uploading portfolio.', error);
-            }
-        }
+          <div id="main" class="showSidebar">
+            <h1>Portfolio - Dashboard</h1>
+            <form method="POST" id="portfolioForm" enctype="multipart/form-data">
+                <h2>Portfolio</h2>
+                <div id="portfolio"></div>
+                <span id="imageNameDisplay"></span>
+                <button type="button" id="addProject">Add Project</button><br><br>
+        
+                <input type="submit" value="Update Portfolio" style="background-color: blue; color:white">
+            </form>
+            </div>
+      </div>
+  
+            <footer id="footer">
+              <p>
+                &copy;
+                <a href="https://www.roziacademy.com">Shuaib Khan</a> 2023. All
+                rights reserved.
+              </p>
+            </footer>
+          </div>
+        </div>
+      </div>
 
 
-        // Attach a submit event listener to the form
-        const portfolioForm = document.getElementById("portfolioForm");
-        portfolioForm.addEventListener("submit", async (e) => {
-            e.preventDefault();
-            sendDataToServer(); // Call the function to send data to the server manually
-        });
 
 
-        // get data from backend 
-        async function getPortfolioData() {
-            try {
-                const res = await fetch('http://localhost:8000/api/portfolio');
-                
-                if (!res.status === 200) {
-                    throw new Error('Network response was not ok');
-                }
-                const data = await res.json();
-                // console.log(data);
-                setFormFields(data);
-            } catch (error) {
-                console.error('There has been a problem with your fetch operation:', error);
-            }
-        }
 
-        window.addEventListener('load', getPortfolioData);
 
-    </script>
+
+    <div id="sidebar">
+        <div class="siteTitle">
+          <a href="/">
+            <img
+              src="https://firebasestorage.googleapis.com/v0/b/highlevel-backend.appspot.com/o/companyPhotos%2FmoCTxsMnAjDWyi4B8PIA.png?alt=media&token=d2a6a16d-ba1b-4135-aa73-991703b7f114"
+              alt="logo"
+              width="50px"
+            />
+          </a>
+        </div>
+        <div class="dashboard">
+          <i class="fa-solid fa-house"></i>
+          <h3>Dashboard</h3>
+        </div>
+        <div class="menu">
+          <h4>PAGES</h4>
+          <ul>
+            <li>
+              <i class="fa-solid fa-bag-shopping"></i>
+              <a href="index.html">Home</a>
+              <i class="fa-solid fa-angle-right"></i>
+            </li>
+            <li>
+              <i class="fa-solid fa-bag-shopping"></i>
+              <a href="resume.html">Resume</a>
+              <i class="fa-solid fa-angle-right"></i>
+            </li>
+            <li>
+              <i class="fa-solid fa-bag-shopping"></i>
+              <a href="services.html">Services</a>
+              <i class="fa-solid fa-angle-right"></i>
+            </li>
+            <li>
+              <i class="fa-solid fa-bag-shopping"></i>
+              <a href="portfolio.html">Portfolio</a>
+              <i class="fa-solid fa-angle-right"></i>
+            </li>
+            <li>
+              <i class="fa-solid fa-bag-shopping"></i>
+              <a href="menu.html">Menu</a>
+              <i class="fa-solid fa-angle-right"></i>
+            </li>
+            <li>
+              <i class="fa-solid fa-bag-shopping"></i>
+              <a href="contact.html">Contact</a>
+              <i class="fa-solid fa-angle-right"></i>
+            </li>
+          </ul>
+        </div>
+      </div>
+  
+
+      <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
 </body>
 
 </html>
+

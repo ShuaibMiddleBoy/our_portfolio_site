@@ -1,3 +1,12 @@
+
+
+const hamburgerMenu = document.querySelector('.hamburger-menu');
+const menu = document.querySelector('.navbar-right');
+
+hamburgerMenu.addEventListener('click', function () {
+    menu.classList.toggle('open');
+    menu.classList.toggle('closed');
+});
 // add dynamic data to menu 
 const locateMenuData = (data) => {
     const logoImage = document.querySelector('.logo');
@@ -325,19 +334,13 @@ mapContainer.classList.remove('loading')
 recaptchaContainer.classList.remove('loading')
 
 
-const hamburgerMenu = document.querySelector('.hamburger-menu');
-const menu = document.querySelector('.navbar-right');
-
-hamburgerMenu.addEventListener('click', function () {
-    menu.classList.toggle('open');
-    menu.classList.toggle('closed');
-});
 
 
-// Work with API's
+
+// Work with APIs
 const URL = "http://localhost:8000/api";
 
-//POST METHOD Using Fetch Api For Contact Form
+// POST METHOD Using Fetch Api For Contact Form
 const form = document.getElementById('contactForm');
 const nameInput = document.getElementById('name');
 const emailInput = document.getElementById('email');
@@ -354,22 +357,52 @@ form.addEventListener('submit', async (e) => {
         email,
         message,
     };
+
     try {
-        const response = await fetch(`${URL}/contact`,
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json", // Specify JSON content type
-                },
-                body: JSON.stringify(formData)
-            });
+        const response = await fetch(`${URL}/contact`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json", // Specify JSON content type
+            },
+            body: JSON.stringify(formData)
+        });
+
         if (response.ok) {
             const data = await response.json();
-            console.log(data);
+            if (data.success) {
+                // Show success toast
+                Toastify({
+                    text: "Form submitted successfully!",
+                    className: "custom-toast",
+                    close: true,
+                    duration: 3000
+                }).showToast();
+
+                // Clear the form
+                form.reset();
+            } else {
+                // Show error toast for server-side validation failure
+                Toastify({
+                    text: data.message || "Submission failed",
+                    backgroundColor: "linear-gradient(to right, #ff5f6d, #ffc371)",
+                    className: "error",
+                }).showToast();
+            }
+        } else {
+            // Show error toast for non-OK HTTP response
+            Toastify({
+                text: "Error submitting form",
+                backgroundColor: "linear-gradient(to right, #ff5f6d, #ffc371)",
+                className: "error",
+            }).showToast();
         }
     } catch (error) {
+        // Show error toast for network or other errors
         console.log(error);
+        Toastify({
+            text: "Network error",
+            backgroundColor: "linear-gradient(to right, #ff5f6d, #ffc371)",
+            className: "error",
+        }).showToast();
     }
 });
-
-

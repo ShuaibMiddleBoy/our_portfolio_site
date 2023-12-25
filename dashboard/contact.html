@@ -4,137 +4,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+    crossorigin="anonymous"
+  />
     <title>contact - Dashboard</title>
+    <script src="./script/contact.js" defer></script>
+    <link rel="stylesheet" href="style/contact.css">
 </head>
 
 <body>
-    <h1>contact - Dashboard</h1>
-    <form method="POST" id="contactForm" enctype="multipart/form-data">
-        <div id="map"></div>
-        <h2>contact info</h2>
-        <div id="contact"></div>
-        <button type="button" id="addInfo">Add Info</button><br><br>
 
-        <input type="submit" value="Update Contact" style="background-color: blue; color:white">
-    </form>
-
-    <script>
-
-        // to set backend data in fields (to not lose data by refreshing)
-        function setFormFields(data) {
-
-            const contactContainer = document.getElementById("contact");
-            const map = document.getElementById("map");
-            const contactInfo = data.contactData;
-
-            const mapDiv = document.createElement("div");
-            mapDiv.innerHTML = `
-                <label for="map">Map Link:</label>
-                <textarea name="map" cols="30" rows="5" required>${data.map}</textarea><br><br>
-                `;
-                map.appendChild(mapDiv);
+    <div id="wrapper">
 
 
-            contactInfo.forEach((Info) => {
-                const contactDiv = document.createElement("div");
-                contactDiv.innerHTML = `
-                <label for="icon">Icon Class:</label>
-                <input type="text" name="contact[icon][]" value="${Info.icon}" required><br><br>
-
-                <label for="info">Contact Info:</label>
-                <input type="text" name="contact[info][]" value="${Info.info}" required><br><br>
-
-                <button type="button" class="removeInfo">Remove Info</button><br><br>
-                `;
-                contactContainer.appendChild(contactDiv);
-
-
-                // Add an event listener to the remove button
-                const removeInfoButton = contactDiv.querySelector(".removeInfo");
-                removeInfoButton.addEventListener("click", () => {
-                    contactContainer.removeChild(contactDiv);
-                });
-            });
-        }
-
-
-        // onclick add fields 
-        const addInfoButton = document.getElementById("addInfo");
-        const contactContainer = document.getElementById("contact");
-
-        function addInfo() {
-            const contactDiv = document.createElement("div");
-
-            contactDiv.innerHTML = `
-                <label for="icon">Icon Class:</label>
-                <input type="text" name="contact[icon][]" required><br><br>
-
-                <label for="info">Contact Info:</label>
-                <input type="text" name="contact[info][]" required><br><br>
-
-                <button type="button" class="removeInfo">Remove Info</button><br><br>
-            `;
-            contactContainer.appendChild(contactDiv);
-
-            // Add an event listener to the remove button
-            const removeInfoButton = contactDiv.querySelector(".removeInfo");
-            removeInfoButton.addEventListener("click", () => {
-                contactContainer.removeChild(contactDiv);
-            });
-        }
-        addInfoButton.addEventListener("click", addInfo);
-
-        // Handle form submission
-        // Function to manually send form data to the server
-        async function sendDataToServer() {
-            const contactForm = document.getElementById("contactForm");
-            const formData = new FormData(contactForm); // Use FormData to collect form data
-
-            try {
-                const response = await fetch('http://localhost:8000/api/contactInfo', {
-                    method: 'POST',
-                    body: formData, // Send FormData directly instead of JSON.stringify
-                });
-
-                if (response.status === 200) {
-                    alert('Contact uploaded successfully.');
-                } else {
-                    alert('Error uploading contact.');
-                }
-            } catch (error) {
-                console.error(error);
-                alert('Error uploading contact.', error);
-            }
-        }
-
-
-        // Attach a submit event listener to the form
-        const contactForm = document.getElementById("contactForm");
-        contactForm.addEventListener("submit", async (e) => {
-            e.preventDefault();
-            sendDataToServer(); // Call the function to send data to the server manually
-        });
+        <div id="content">
+          <div id="main" class="showSidebar">
+            <div class="header">
+              <div class="left">
+                <div class="toggleBtn cross" onclick="toggleSidebar()">
+                  <i id="menuIcon" class="fa-solid fa-times"></i>
+                </div>
+              </div>
+              <div class="right">
+                <a href="" onclick="toggleDropdown(event)"
+                  ><img
+                    style="width: 30px; border-radius: 50%"
+                    src="./images/login.png"
+                    alt=""
+                /></a>
+                <div class="dropdown" id="myDropdown">
+                  <a href="./login.html">Login</a>
+                  <a href="#">Settings</a>
+                </div>
+              </div>
+            </div>
+           
+            <!-- Main Content  -->
+      <div class="mainContent">
+          <div class="container">
+            <h1>contact - Dashboard</h1>
+            <form method="POST" id="contactForm" enctype="multipart/form-data">
+                <div id="map"></div>
+                <h2>contact info</h2>
+                <div id="contact"></div>
+                <button type="button" id="addInfo">Add Info</button><br><br>
+        
+                <input type="submit" value="Update Contact" style="background-color: blue; color:white">
+            </form>
+            </div>
+      </div>
+  
+            <footer id="footer">
+              <p>
+                &copy;
+                <a href="https://www.roziacademy.com">Shuaib Khan</a> 2023. All
+                rights reserved.
+              </p>
+            </footer>
+          </div>
+        </div>
+      </div>
 
 
 
-        // get data from backend 
-        async function getContactData() {
-            try {
-                const res = await fetch('http://localhost:8000/api/contactInfo');
+  
 
-                if (!res.status === 200) {
-                    throw new Error('Network response was not ok');
-                }
-                const data = await res.json();
-                console.log(data);
-                setFormFields(data);
-            } catch (error) {
-                console.error('There has been a problem with your fetch operation:', error);
-            }
-        }
 
-        window.addEventListener('load', getContactData);
-    </script>
+
+
+    <div id="sidebar">
+        <div class="siteTitle">
+          <a href="/">
+            <img
+              src="https://firebasestorage.googleapis.com/v0/b/highlevel-backend.appspot.com/o/companyPhotos%2FmoCTxsMnAjDWyi4B8PIA.png?alt=media&token=d2a6a16d-ba1b-4135-aa73-991703b7f114"
+              alt="logo"
+              width="50px"
+            />
+          </a>
+        </div>
+        <div class="dashboard">
+          <i class="fa-solid fa-house"></i>
+          <h3>Dashboard</h3>
+        </div>
+        <div class="menu">
+          <h4>PAGES</h4>
+          <ul>
+            <li>
+              <i class="fa-solid fa-bag-shopping"></i>
+              <a href="index.html">Home</a>
+              <i class="fa-solid fa-angle-right"></i>
+            </li>
+            <li>
+              <i class="fa-solid fa-bag-shopping"></i>
+              <a href="resume.html">Resume</a>
+              <i class="fa-solid fa-angle-right"></i>
+            </li>
+            <li>
+              <i class="fa-solid fa-bag-shopping"></i>
+              <a href="services.html">Services</a>
+              <i class="fa-solid fa-angle-right"></i>
+            </li>
+            <li>
+              <i class="fa-solid fa-bag-shopping"></i>
+              <a href="portfolio.html">Portfolio</a>
+              <i class="fa-solid fa-angle-right"></i>
+            </li>
+            <li>
+                <i class="fa-solid fa-bag-shopping"></i>
+                <a href="menu.html">Menu</a>
+                <i class="fa-solid fa-angle-right"></i>
+              </li>
+            <li>
+              <i class="fa-solid fa-bag-shopping"></i>
+              <a href="contact.html">Contact</a>
+              <i class="fa-solid fa-angle-right"></i>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    
 </body>
 
 </html>

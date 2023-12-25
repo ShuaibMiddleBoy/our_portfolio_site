@@ -145,6 +145,10 @@ currentImageContainer.innerHTML = `<img src="http://localhost:8000/public/images
 addAddressField();
 addSocialLinkField();
 });
+
+
+
+        // code for toggle sidebar and header login 
 function toggleDropdown(e) {
 e.preventDefault();
 var dropdown = document.getElementById("myDropdown");

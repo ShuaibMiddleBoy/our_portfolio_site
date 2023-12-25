@@ -4,288 +4,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./style/services.css" />
+    <script src="script/services.js" defer></script>
     <title>Services - Dashboard</title>
 </head>
 
 <body>
-    <h1>Services - Dashboard</h1>
-    <form method="POST" id="servicesForm">
-        <!-- for servies section  -->
-        <h2>My Services</h2>
-        <div id="services"></div>
-        <button type="button" id="addService">Add service</button><br><br>
 
-        <!-- for clients section  -->
-        <h2>My Clients</h2>
-        <div id="clients"></div>
-        <button type="button" id="addClient">Add Client</button><br><br>
-
-        <!-- for Feedbacks section  -->
-        <h2>My Feedbacks</h2>
-        <div id="feedbacks"></div>
-        <button type="button" id="addFeedback">Add Feedback</button><br><br>
-
-        <!-- for Pricing section  -->
-        <h2>My Pricing</h2>
-        <div id="pricing"></div>
-        <button type="button" id="addPlan">Add Plan</button><br><br>
-
-        <button type="submit" style="background-color: rgb(38, 0, 255); color:white">Update Services</button>
-    </form>
-
-    <script>
-
-        // to set backend data in fields (to not lose data by refreshing)
-        function setFormFields(data) {
-
-            const { services, clients, feedbacks, plans } = data;
-            console.log(feedbacks);
-            services.forEach((service) => {
-                const serviceDiv = document.createElement('div');
-                serviceDiv.innerHTML = `
-            <label for="serviceimage">Service Image:</label>
-            <img src="http://localhost:8000/public/images/${service.serviceImage}" style="max-width: 180px;" alt="Resume" ><br><br>
-            <input type="file" name="servicesImage" value="${service.serviceImage}" multiple id="serviceimage"><br><br>
-            <label for="servicetitle">Service Title:</label>
-            <input type="text" name="services[title][]" value="${service.serviceTitle}" id="servicetitile" required><br><br>
-            <label for="servicedesc">Service Description:</label>
-            <textarea name="services[desc][]" cols="30" rows="5" required>${service.serviceDesc}</textarea><br><br>
-            <button type="button" class="removeService">Remove Service</button><br><br><br>
-            `;
-            servicesContainer.appendChild(serviceDiv);
-
-                // to remove service 
-                const removeServiceButton = serviceDiv.querySelector('.removeService');
-                removeServiceButton.addEventListener('click', () => {
-                    servicesContainer.removeChild(serviceDiv);
-                })
-            });
+    <div id="wrapper">
 
 
-
-            clients.forEach((client) => {
-                const clientDiv = document.createElement('div');
-            clientDiv.innerHTML = `
-            <label for="clientimage">Client Image:</label>
-            <img src="http://localhost:8000/public/images/${client.clientImage}" style="max-width: 180px;" alt="Resume" ><br><br>
-            <input type="file" name="clientsImage" value="${client.clientImage}" multiple id="clientimage"><br><br>
-            <button type="button" class="removeClient">Remove Client</button><br><br><br>
-            `;
-            clientsContainer.appendChild(clientDiv);
-
-            // to remove service 
-            const removeClientButton = clientDiv.querySelector('.removeClient');
-            removeClientButton.addEventListener('click', () => {
-                clientsContainer.removeChild(clientDiv);
-            })
-            });
-
-
-
-
-            feedbacks.forEach((feedback) => {
-                const feedbackDiv = document.createElement('div');
-            feedbackDiv.innerHTML = `
-            <label for="feedbackimage">Reviewer Image:</label>
-            <img src="http://localhost:8000/public/images/${feedback.image}" style="max-width: 180px;" alt="Resume" ><br><br>
-            <input type="file" name="feedbacksImage" value="${feedback.image}" multiple id="feedbackimage" ><br><br>
-            <label for="feedbackReviewer">Reviewer Name:</label>
-            <input type="text" name="feedbacks[reviewer][]" value="${feedback.reviewer}" id="feedbackreviewer" required><br><br>
-            <label for="feedbackcompany">Reviewer Company:</label>
-            <input type="text" name="feedbacks[company][]" value="${feedback.company}" id="feedbackcompany" required><br><br>
-            <label for="feedbackdesc">Feedback:</label>
-            <textarea name="feedbacks[desc][]" cols="30" rows="5" id="feedbackdesc" required>${feedback.description}</textarea><br><br>
-            <button type="button" class="removeFeedback">Remove Feedback</button><br><br><br>
-            `;
-            feedbacksContainer.appendChild(feedbackDiv);
-
-            // to remove feedback 
-            const removeFeedbackButton = feedbackDiv.querySelector('.removeFeedback');
-            removeFeedbackButton.addEventListener('click', () => {
-                feedbacksContainer.removeChild(feedbackDiv);
-            })
-            });
-
-
-
-            plans.forEach((plan) => {
-                const planDiv = document.createElement('div');
-            planDiv.innerHTML = `
-            <label for="planname">Plan Name:</label>
-            <input type="text" name="plans[name][]" value="${plan.name}" id="planname" required><br><br>
-            <label for="planPrice">Plan Price:</label>
-            <input type="text" name="plans[price][]" value="${plan.price}" id="planprice" required><br><br>
-            <label for="plandesc">Plan Description:</label>
-            <textarea name="plans[desc][] cols="30" rows="5" id="plandesc" required>${plan.description}</textarea><br><br>
-            <button type="button" class="removeplan">Remove plan</button><br><br><br>
-            `;
-            pricingContainer.appendChild(planDiv);
-
-            // to remove plan 
-            const removeplanButton = planDiv.querySelector('.removeplan');
-            removeplanButton.addEventListener('click', () => {
-                pricingContainer.removeChild(planDiv);
-            })
-            });
-
-        }
-
-
+        <div id="content">
+          <div id="main" class="showSidebar">
+            <div class="header">
+              <div class="left">
+                <div class="toggleBtn cross" onclick="toggleSidebar()">
+                  <i id="menuIcon" class="fa-solid fa-times"></i>
+                </div>
+              </div>
+              <div class="right">
+                <a href="" onclick="toggleDropdown(event)"
+                  ><img
+                    style="width: 30px; border-radius: 50%"
+                    src="./images/login.png"
+                    alt=""
+                /></a>
+                <div class="dropdown" id="myDropdown">
+                  <a href="./login.html">Login</a>
+                  <a href="#">Settings</a>
+                </div>
+              </div>
+            </div>
+           
+            <!-- Main Content  -->
+      <div class="mainContent">
+          <div class="container">
+            <h1>Services - Dashboard</h1>
+            <form method="POST" id="servicesForm">
+                <!-- for servies section  -->
+                <h2>My Services</h2>
+                <div id="services"></div>
+                <button type="button" id="addService">Add service</button><br><br>
         
+                <!-- for clients section  -->
+                <h2>My Clients</h2>
+                <div id="clients"></div>
+                <button type="button" id="addClient">Add Client</button><br><br>
+        
+                <!-- for Feedbacks section  -->
+                <h2>My Feedbacks</h2>
+                <div id="feedbacks"></div>
+                <button type="button" id="addFeedback">Add Feedback</button><br><br>
+        
+                <!-- for Pricing section  -->
+                <h2>My Pricing</h2>
+                <div id="pricing"></div>
+                <button type="button" id="addPlan">Add Plan</button><br><br>
+        
+                <button type="submit" style="background-color: rgb(38, 0, 255); color:white">Update Services</button>
+            </form>
+        
+            </div>
+      </div>
+  
+            <footer id="footer">
+              <p>
+                &copy;
+                <a href="https://www.roziacademy.com">Shuaib Khan</a> 2023. All
+                rights reserved.
+              </p>
+            </footer>
+          </div>
+        </div>
+      </div>
 
 
 
+    
 
-        // for  services section 
-        const addServiceButton = document.getElementById('addService');
-        const servicesContainer = document.getElementById('services');
+    <div id="sidebar">
+        <div class="siteTitle">
+          <a href="/">
+            <img
+              src="https://firebasestorage.googleapis.com/v0/b/highlevel-backend.appspot.com/o/companyPhotos%2FmoCTxsMnAjDWyi4B8PIA.png?alt=media&token=d2a6a16d-ba1b-4135-aa73-991703b7f114"
+              alt="logo"
+              width="50px"
+            />
+          </a>
+        </div>
+        <div class="dashboard">
+          <i class="fa-solid fa-house"></i>
+          <h3>Dashboard</h3>
+        </div>
+        <div class="menu">
+          <h4>PAGES</h4>
+          <ul>
+            <li>
+              <i class="fa-solid fa-bag-shopping"></i>
+              <a href="index.html">Home</a>
+              <i class="fa-solid fa-angle-right"></i>
+            </li>
+            <li>
+              <i class="fa-solid fa-bag-shopping"></i>
+              <a href="resume.html">Resume</a>
+              <i class="fa-solid fa-angle-right"></i>
+            </li>
+            <li>
+              <i class="fa-solid fa-bag-shopping"></i>
+              <a href="services.html">Services</a>
+              <i class="fa-solid fa-angle-right"></i>
+            </li>
+            <li>
+              <i class="fa-solid fa-bag-shopping"></i>
+              <a href="portfolio.html">Portfolio</a>
+              <i class="fa-solid fa-angle-right"></i>
+            </li>
+            <li>
+              <i class="fa-solid fa-bag-shopping"></i>
+              <a href="menu.html">Menu</a>
+              <i class="fa-solid fa-angle-right"></i>
+            </li>
+            <li>
+              <i class="fa-solid fa-bag-shopping"></i>
+              <a href="contact.html">Contact</a>
+              <i class="fa-solid fa-angle-right"></i>
+            </li>
+          </ul>
+        </div>
+      </div>
+    <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"
+  ></script>
 
-        const addService = () => {
-            const serviceDiv = document.createElement('div');
-            serviceDiv.innerHTML = `
-            <label for="serviceimage">Service Image:</label>
-            <input type="file" name="servicesImage" multiple id="serviceimage" ><br><br>
-            <label for="servicetitle">Service Title:</label>
-            <input type="text" name="services[title][]" id="servicetitile" required><br><br>
-            <label for="servicedesc">Service Description:</label>
-            <textarea name="services[desc][]" cols="30" rows="5" required></textarea><br><br>
-            <input type="text" name="services[desc][]" id="servicedesc" required><br><br>
-            <button type="button" class="removeService">Remove Service</button><br><br><br>
-            `;
-            servicesContainer.appendChild(serviceDiv);
-
-            // to remove service 
-            const removeServiceButton = serviceDiv.querySelector('.removeService');
-            removeServiceButton.addEventListener('click', () => {
-                servicesContainer.removeChild(serviceDiv);
-            })
-        }
-        addServiceButton.addEventListener('click', addService)
-
-
-        // for clients section 
-        const addClientButton = document.getElementById('addClient');
-        const clientsContainer = document.getElementById('clients');
-
-        const addClient = () => {
-            const clientDiv = document.createElement('div');
-            clientDiv.innerHTML = `
-            <label for="clientimage">Client Image:</label>
-            <input type="file" name="clientsImage" multiple id="clientimage" ><br><br>
-            <button type="button" class="removeClient">Remove Client</button><br><br><br>
-            `;
-            clientsContainer.appendChild(clientDiv);
-
-            // to remove service 
-            const removeClientButton = clientDiv.querySelector('.removeClient');
-            removeClientButton.addEventListener('click', () => {
-                clientsContainer.removeChild(clientDiv);
-            })
-        }
-        addClientButton.addEventListener('click', addClient)
-
-
-        // for feedbacks section 
-        const addFeedbackButton = document.getElementById('addFeedback');
-        const feedbacksContainer = document.getElementById('feedbacks');
-
-        const addFeedback = () => {
-            const feedbackDiv = document.createElement('div');
-            feedbackDiv.innerHTML = `
-            <label for="feedbackimage">Reviewer Image:</label>
-            <input type="file" name="feedbacksImage" multiple id="feedbackimage" ><br><br>
-            <label for="feedbackReviewer">Reviewer Name:</label>
-            <input type="text" name="feedbacks[reviewer][]" id="feedbackreviewer" required><br><br>
-            <label for="feedbackcompany">Reviewer Company:</label>
-            <input type="text" name="feedbacks[company][]" id="feedbackcompany" required><br><br>
-            <label for="feedbackdesc">Feedback:</label>
-            <textarea name="feedbacks[desc][]" cols="30" rows="5" id="feedbackdesc" required></textarea><br><br>
-            <button type="button" class="removeFeedback">Remove Feedback</button><br><br><br>
-            `;
-            feedbacksContainer.appendChild(feedbackDiv);
-
-            // to remove service 
-            const removeFeedbackButton = feedbackDiv.querySelector('.removeFeedback');
-            removeFeedbackButton.addEventListener('click', () => {
-                feedbacksContainer.removeChild(feedbackDiv);
-            })
-        }
-        addFeedbackButton.addEventListener('click', addFeedback)
-
-
-
-        // for plans section 
-        const addPlanButton = document.getElementById('addPlan');
-        const pricingContainer = document.getElementById('pricing');
-
-        const addPlan = () => {
-            const planDiv = document.createElement('div');
-            planDiv.innerHTML = `
-            <label for="planname">Plan Name:</label>
-            <input type="text" name="plans[name][]" id="planname" required><br><br>
-            <label for="planPrice">Plan Price:</label>
-            <input type="text" name="plans[price][]" id="planprice" required><br><br>
-            <label for="plandesc">Plan Description:</label>
-            <textarea name="plans[desc][] cols="30" rows="5" id="plandesc" required></textarea><br><br>
-            <button type="button" class="removeplan">Remove plan</button><br><br><br>
-            `;
-            pricingContainer.appendChild(planDiv);
-
-            // to remove service 
-            const removeplanButton = planDiv.querySelector('.removeplan');
-            removeplanButton.addEventListener('click', () => {
-                pricingContainer.removeChild(planDiv);
-            })
-        }
-        addPlanButton.addEventListener('click', addPlan)
-
-
-        // sending form data to backend 
-        const servicesForm = document.getElementById('servicesForm');
-
-        servicesForm.addEventListener('submit', async (event) => {
-            event.preventDefault();
-
-            const formData = new FormData(servicesForm);
-
-            try {
-                const response = await fetch('http://localhost:8000/api/services', {
-                    method: 'POST',
-                    body: formData
-                });
-
-                if (response.status === 200) {
-                    console.log(formData);
-                    console.log('Services updated successfully');
-                    alert('Services updated successfully')
-                } else {
-                    console.error('Failed to update services ');
-                    alert('Failed to update services ');
-                }
-            } catch (err) {
-                console.error('Error:', err);
-            }
-        })
-
-
-
-        // get data from backend 
-        async function getServicesData() {
-            try {
-                const res = await fetch('http://localhost:8000/api/services');
-
-                if (!res.status === 200) {
-                    throw new Error('Network response was not ok');
-                }
-                const data = await res.json();
-                console.log(data);
-                setFormFields(data);
-            } catch (error) {
-                console.error('There has been a problem with your fetch operation:', error);
-            }
-        }
-        window.addEventListener('load', getServicesData);
-    </script>
 </body>
 
 </html>
