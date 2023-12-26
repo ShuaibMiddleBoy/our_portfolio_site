@@ -21,10 +21,16 @@ function toggleRegisterForm() {
   registerPopup.style.display = "flex";
 }
 
-function logout() {
+function logoutButton() {
   localStorage.removeItem('userData');
   loginBtn.style.display = "flex";
   logoutBtn.style.display = "none";
+}
+
+const localStoredData = localStorage.getItem('userData');
+if(localStoredData){
+  loginBtn.style.display = "none";
+  logoutBtn.style.display = "flex";
 }
 
 
@@ -96,15 +102,4 @@ if (userData && userData.user && userData.user.role === 1) {
   dashboardLink.className = 'dashboard';
   dashboardLink.innerHTML = '<a href="./dashboard/">Dashboard</a>';
   document.body.prepend(dashboardLink);
-}
-
-const localStoredData = localStorage.getItem('userData');
-
-if(localStoredData){
-  loginBtn.style.display = "none";
-  logoutBtn.style.display = "flex";
-
-}else {
-  loginBtn.style.display = "flex";
-  logoutBtn.style.display = "none";
 }
