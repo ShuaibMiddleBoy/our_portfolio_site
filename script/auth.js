@@ -1,5 +1,7 @@
 const loginPopup = document.querySelector(".popup-container");
 const registerPopup = document.querySelector(".popup-register-container");
+const loginBtn = document.querySelector(".login-btn");
+const logoutBtn = document.querySelector(".logout-btn");
 
 function showLoginPopup() {
   loginPopup.style.display = "flex";
@@ -17,6 +19,18 @@ function hideRegisterPopup() {
 function toggleRegisterForm() {
   loginPopup.style.display = "none";
   registerPopup.style.display = "flex";
+}
+
+function logoutButton() {
+  localStorage.removeItem('userData');
+  loginBtn.style.display = "flex";
+  logoutBtn.style.display = "none";
+}
+
+const localStoredData = localStorage.getItem('userData');
+if(localStoredData){
+  loginBtn.style.display = "none";
+  logoutBtn.style.display = "flex";
 }
 
 
@@ -82,7 +96,7 @@ function handleRegisterSubmit(event) {
 const userData = JSON.parse(localStorage.getItem('userData'));
 
 // Check if user data and role exist
-if (userData && userData.user && userData.user.role === 0) {
+if (userData && userData.user && userData.user.role === 1) {
   // Display the dashboard link
   const dashboardLink = document.createElement('div');
   dashboardLink.className = 'dashboard';
